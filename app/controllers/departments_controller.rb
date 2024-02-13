@@ -3,13 +3,14 @@ class DepartmentsController < ApplicationController
   def index
     @departments = Department.all.order({ :created_at => :desc })
 
+
     render({ :template => "departments/index" })
   end
 
   def show
     the_id = params.fetch("path_id")
     @department = Department.where({:id => the_id })
-
+    @the_department = @department.at(0)
     render({ :template => "departments/show" })
   end
 
